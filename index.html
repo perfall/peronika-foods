@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- My CSS-->
+    <link rel="stylesheet" type="text/css" href='style.css'>
+
+    <title>Peronika Foods</title>
+  </head>
+  <body>
+    <div class="container-fluid" id="content1" style="display:block">
+
+        <div class="row" id="row1">
+            <div class="col text-center my-auto">
+                <h1><i>Peronika Foods</i></h1>
+            </div>
+        </div>
+
+        <!-- <div class="border"></div> -->
+        <div class="row" id="row2">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <h5 id="foodQuote"><i>To eat or not to eat that is the question.</i></h5>
+                <h5 id="foodQuoteSource">- Quoty Quotespeare</h5>
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="border"></div>
+        <a id="todayLink">
+            <div class="row" id="row3">
+                <div class="col-5 border-right" id="col-no-pad">
+                    <img  id="todayImage">
+                </div>
+                <div class="col-7 text-center my-auto">
+                    <h4><b>Dagens recept</b></h4>
+                    <h5 id="todayTitle">-</h5>
+                </div>
+            </div>
+        </a>
+
+        <div class="border"></div>
+        <a id="randomLink">
+            <div class="row" id="row4">
+                <div class="col text-center my-auto">
+                    <h4>Slumpa recept</h4>
+                </div>
+            </div>
+        </a>
+
+        <div class="border"></div>
+        <div class="row" id="row5">
+            <div class="col text-center my-auto">
+                <h4>Alla recept</h4>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        idToDish = {
+            "even-1": "Pizza night",
+            "even-2": "Poké bowl",
+            "even-3": "Obestämd",
+            "even-4": "Linsgryta",
+            "even-5": "Paj",
+            "even-6": "Obestämd",
+            "even-0": "Crepes med svampstuvning",
+            "odd-1": "Pesto pasta",
+            "odd-2": "Quessadillas",
+            "odd-3": "Obestämd",
+            "odd-4": "Hummus med böngryta",
+            "odd-5": "Bön och morotsbiffar med klyftpotatis",
+            "odd-6": "Obestämd",
+            "odd-0": "Köttbullar och potatismos"
+        }
+
+        function getDateId(d) {
+            d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+            var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+            // Number 3 in the following calc is adjusted to fit the current year
+            var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 3)/7);
+            var n = d.getDay()
+            if(weekNo % 2 == 0){
+                return "even-" + n
+            }
+            else {
+                return "odd-" + n
+            }
+        }
+
+        var dateId = getDateId(new Date());
+        console.log(dateId);
+        $("#todayLink").attr("href", "recipe.html?id=" + dateId + ".html");
+
+        var keys = Object.keys(idToDish)
+        var randomKey = keys[ keys.length * Math.random() << 0]
+        $("#randomLink").attr("href", "recipe.html?id=" + randomKey + ".html");
+
+        $("#todayImage").attr("src", "recipes/" + dateId + ".png");
+
+        $("#todayTitle").text(idToDish[dateId])
+
+
+        var foodQuotes = [["Laughter is brightest in the place where the food is.", "- Irish Proverb"], ["One of the very nicest things about life is the way we must regularly stop whatever it is we are doing and devote our attention to eating.", "- Luciano Pavarotti"], ["After a good dinner one can forgive anybody, even one's own relatives.", "- Oscar Wilde"], ["The secret of success in life is to eat what you like and let the food fight it out inside.", "- Mark Twain"], ["The only time to eat diet food is while you're waiting for the steak to cook.", "- Julia Child"], ["Food is symbolic of love when words are inadequate.", "- Alan D. Wolfelt"], ["If you really want to make a friend, go to someone's house and eat with him, the people who give you their food give you their heart.", "- Cesar Chavez"], ["One cannot think well, love well and sleep well if one has not dined well.", "- Virginia Woolf"], ["Popcorn for breakfast! Why not? It's a grain. It's like, like, grits, but with high self-esteem.", "- James Patterson"], ["The chief pleasure in eating does not consist in costly seasoning, or exquisite flavor, but in yourself.", "- Horace"], ["You can't just eat good food. You've got to talk about it too. And you've got to talk about it to somebody who understands that kind of food.", "- Kurt Vonnegut"], ["People who love to eat are always the best people.", "- Julia Child"], ["Eat breakfast like a king, lunch like a prince, and dinner like a pauper.", "- Adelle Davis"], ["Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.", "- Jim Davis"], ["Cooking is like love. It should be entered into with abandon or not at all.", "- Harriet Van Horne"], ["Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.", "- Doug Larson"], ["Only dull people are brilliant at breakfast.", "- Oscar Wilde"], ["A recipe has no soul. You, as the cook, must bring soul to the recipe.", "- Thomas Keller"], ["The sweetest honey Is loathsome in his own deliciousness And in the taste confounds the appetite.", "- William Shakespeare"], ["Training is everything. The peach was once a bitter almond; cauliflower is nothing but cabbage with a college education.", "- Mark Twain"], ["Rice is born in water and must die in wine.", "- Italian Proverb"], ["I'm pretty sure that eating chocolate keeps wrinkles away because I have never seen a 10 year old with a Hershey bar and crows feet.", "- Amy Neftzger"], ["If soup isn't hot enough to make a grown man wince, it's undrinkable.", "- Terri Guillemets"], ["The onion is the truffle of the poor.", "- Robert J. Courtine"], ["Vegetables are food of the earth, but fruits taste of the heavens.", "- Terri Guillemets"], ["Good bread is the most fundamentally satisfying of all foods; good bread with fresh butter, the greatest of feasts!", "- James Beard"], ["Food brings people together on many different levels. It's nourishment of the soul and body; it's truly love.", "- Giada De Laurentiis"], ["My general rule is that if everyone knew how to cook fresh produce from their local area, and Monday to Thursday within 20 minutes, you know, there’s millions of recipes out there to be had.", "- Jamie Oliver"], ["Food is everything we are. It's an extension of nationalist feeling, ethnic feeling, your personal history, your province, your region, your tribe, your grandma. It's inseparable from those from the get-go.", "- Anthony Bourdain"]]
+
+        foodQuote = foodQuotes[Math.floor(Math.random() * foodQuotes.length)]
+        $("#foodQuote").text(foodQuote[0])
+        $("#foodQuote").css({"font-style": "italic"})
+        $("#foodQuoteSource").text(foodQuote[1])
+        
+    </script>
+
+    <script src="main.js"></script>
+  </body>
+</html>
